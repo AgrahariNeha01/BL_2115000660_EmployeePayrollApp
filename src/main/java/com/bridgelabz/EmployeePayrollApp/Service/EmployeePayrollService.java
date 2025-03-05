@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.NoSuchElementException;
 
 @Service
 public class EmployeePayrollService {
@@ -23,11 +23,14 @@ public class EmployeePayrollService {
     }
 
     public Employee getEmployeeById(int id) {
-        return employeeRepository.findById(id).orElse(null);  // ✅ Fix for your error
+        return employeeRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Employee not found with id: " + id));
     }
 
     public void deleteEmployee(int id) {
+        if (!employeeRepository.existsById(id)) {
+            throw new NoSuchElementException("Employee not found with id: " + id);
+        }
         employeeRepository.deleteById(id);
     }
-
 }

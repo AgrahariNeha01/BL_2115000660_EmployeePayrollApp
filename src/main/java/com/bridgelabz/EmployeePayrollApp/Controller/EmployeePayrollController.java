@@ -3,6 +3,7 @@ package com.bridgelabz.EmployeePayrollApp.Controller;
 import com.bridgelabz.EmployeePayrollApp.Model.Employee;
 import com.bridgelabz.EmployeePayrollApp.Service.EmployeePayrollService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,23 +16,23 @@ public class EmployeePayrollController {
     private EmployeePayrollService employeeService;
 
     @PostMapping("/add")
-    public Employee addEmployee(@RequestBody Employee employee) {
-        return employeeService.addEmployee(employee);
+    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
+        return ResponseEntity.ok(employeeService.addEmployee(employee));
     }
 
     @GetMapping("/{id}")
-    public Employee getEmployeeById(@PathVariable int id) {
-        return employeeService.getEmployeeById(id);  // ? Now this will work
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable int id) {
+        return ResponseEntity.ok(employeeService.getEmployeeById(id));
     }
 
     @GetMapping("/all")
-    public List<Employee> getAllEmployees() {
-        return employeeService.getAllEmployees();
+    public ResponseEntity<List<Employee>> getAllEmployees() {
+        return ResponseEntity.ok(employeeService.getAllEmployees());
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteEmployee(@PathVariable int id) {
+    public ResponseEntity<String> deleteEmployee(@PathVariable int id) {
         employeeService.deleteEmployee(id);
-        return "Employee deleted successfully!";
+        return ResponseEntity.ok("Employee deleted successfully!");
     }
 }
