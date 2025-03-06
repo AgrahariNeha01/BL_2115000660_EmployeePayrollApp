@@ -4,7 +4,6 @@ import com.bridgelabz.EmployeePayrollApp.Model.Employee;
 import com.bridgelabz.EmployeePayrollApp.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -25,6 +24,16 @@ public class EmployeePayrollService {
     public Employee getEmployeeById(int id) {
         return employeeRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Employee not found with id: " + id));
+    }
+
+    public Employee updateEmployee(int id, Employee updatedEmployee) {
+        Employee existingEmployee = employeeRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Employee not found with id: " + id));
+
+        existingEmployee.setName(updatedEmployee.getName());
+        existingEmployee.setSalary(updatedEmployee.getSalary());
+
+        return employeeRepository.save(existingEmployee);
     }
 
     public void deleteEmployee(int id) {
