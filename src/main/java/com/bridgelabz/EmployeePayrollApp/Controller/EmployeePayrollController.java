@@ -2,6 +2,7 @@ package com.bridgelabz.EmployeePayrollApp.Controller;
 
 import com.bridgelabz.EmployeePayrollApp.Model.Employee;
 import com.bridgelabz.EmployeePayrollApp.Service.EmployeePayrollService;
+import com.bridgelabz.EmployeePayrollApp.DTO.EmployeeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,8 @@ public class EmployeePayrollController {
     private EmployeePayrollService employeeService;
 
     @PostMapping("/add")
-    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
-        return ResponseEntity.ok(employeeService.addEmployee(employee));
+    public ResponseEntity<Employee> addEmployee(@RequestBody EmployeeDTO employeeDTO) {
+        return ResponseEntity.ok(employeeService.addEmployee(employeeDTO));
     }
 
     @GetMapping("/{id}")
@@ -31,8 +32,8 @@ public class EmployeePayrollController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable int id, @RequestBody Employee updatedEmployee) {
-        return ResponseEntity.ok(employeeService.updateEmployee(id, updatedEmployee));
+    public ResponseEntity<Employee> updateEmployee(@PathVariable int id, @RequestBody EmployeeDTO updatedEmployeeDTO) {
+        return ResponseEntity.ok(employeeService.updateEmployee(id, updatedEmployeeDTO));
     }
 
     @DeleteMapping("/delete/{id}")

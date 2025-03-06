@@ -2,6 +2,7 @@ package com.bridgelabz.EmployeePayrollApp.Service;
 
 import com.bridgelabz.EmployeePayrollApp.Model.Employee;
 import com.bridgelabz.EmployeePayrollApp.Repository.EmployeeRepository;
+import com.bridgelabz.EmployeePayrollApp.DTO.EmployeeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -17,7 +18,11 @@ public class EmployeePayrollService {
         return employeeRepository.findAll();
     }
 
-    public Employee addEmployee(Employee employee) {
+    public Employee addEmployee(EmployeeDTO employeeDTO) {
+        Employee employee = new Employee();
+        employee.setName(employeeDTO.getName());
+        employee.setSalary(employeeDTO.getSalary());
+
         return employeeRepository.save(employee);
     }
 
@@ -26,12 +31,12 @@ public class EmployeePayrollService {
                 .orElseThrow(() -> new NoSuchElementException("Employee not found with id: " + id));
     }
 
-    public Employee updateEmployee(int id, Employee updatedEmployee) {
+    public Employee updateEmployee(int id, EmployeeDTO updatedEmployeeDTO) {
         Employee existingEmployee = employeeRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Employee not found with id: " + id));
 
-        existingEmployee.setName(updatedEmployee.getName());
-        existingEmployee.setSalary(updatedEmployee.getSalary());
+        existingEmployee.setName(updatedEmployeeDTO.getName());
+        existingEmployee.setSalary(updatedEmployeeDTO.getSalary());
 
         return employeeRepository.save(existingEmployee);
     }
