@@ -1249,3 +1249,10 @@ Unconditional classes:
 2025-03-07T14:54:23.083+05:30 DEBUG 14712 --- [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
 2025-03-07T14:54:23.089+05:30 DEBUG 14712 --- [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Fri Mar 07 14:54:23 IST 2025, status=404, error=Not Found, trace=org.springframework.web. (truncated)...]
 2025-03-07T14:54:23.178+05:30 DEBUG 14712 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2025-03-07T14:56:57.577+05:30 DEBUG 14712 --- [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/employees/logtest", parameters={}
+2025-03-07T14:56:57.586+05:30 DEBUG 14712 --- [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.bridgelabz.EmployeePayrollApp.Controller.EmployeePayrollController#logExample()
+2025-03-07T14:56:57.599+05:30  INFO 14712 --- [http-nio-8080-exec-5] c.b.E.C.EmployeePayrollController        : This is an INFO log message!
+2025-03-07T14:56:57.601+05:30 ERROR 14712 --- [http-nio-8080-exec-5] c.b.E.C.EmployeePayrollController        : This is an ERROR log message!
+2025-03-07T14:56:57.610+05:30 DEBUG 14712 --- [http-nio-8080-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Using 'text/html', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7] and supported [text/plain, */*, application/json, application/*+json]
+2025-03-07T14:56:57.612+05:30 DEBUG 14712 --- [http-nio-8080-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Writing ["Logging enabled!"]
+2025-03-07T14:56:57.616+05:30 DEBUG 14712 --- [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
