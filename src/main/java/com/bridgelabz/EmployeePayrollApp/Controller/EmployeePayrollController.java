@@ -6,11 +6,13 @@ import com.bridgelabz.EmployeePayrollApp.DTO.EmployeeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/employees")
+@Slf4j
 public class EmployeePayrollController {
 
     @Autowired
@@ -40,5 +42,14 @@ public class EmployeePayrollController {
     public ResponseEntity<String> deleteEmployee(@PathVariable int id) {
         employeeService.deleteEmployee(id);
         return ResponseEntity.ok("Employee deleted successfully!");
+    }
+
+
+    @GetMapping("/logtest")
+    public String logExample() {
+        log.info("This is an INFO log message!");
+        log.debug("This is a DEBUG log message!");
+        log.error("This is an ERROR log message!");
+        return "Logging enabled!";
     }
 }
