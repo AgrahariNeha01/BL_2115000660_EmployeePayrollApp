@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import lombok.extern.slf4j.Slf4j;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class EmployeePayrollController {
     private EmployeePayrollService employeeService;
 
     @PostMapping("/add")
-    public ResponseEntity<Employee> addEmployee(@RequestBody EmployeeDTO employeeDTO) {
+    public ResponseEntity<Employee> addEmployee(@Valid @RequestBody EmployeeDTO employeeDTO) {
         return ResponseEntity.ok(employeeService.addEmployee(employeeDTO));
     }
 
@@ -34,7 +35,7 @@ public class EmployeePayrollController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable int id, @RequestBody EmployeeDTO updatedEmployeeDTO) {
+    public ResponseEntity<Employee> updateEmployee(@PathVariable int id, @Valid @RequestBody EmployeeDTO updatedEmployeeDTO) {
         return ResponseEntity.ok(employeeService.updateEmployee(id, updatedEmployeeDTO));
     }
 
@@ -43,7 +44,6 @@ public class EmployeePayrollController {
         employeeService.deleteEmployee(id);
         return ResponseEntity.ok("Employee deleted successfully!");
     }
-
 
     @GetMapping("/logtest")
     public String logExample() {
