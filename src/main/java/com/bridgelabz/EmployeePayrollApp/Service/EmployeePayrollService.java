@@ -1,5 +1,6 @@
 package com.bridgelabz.EmployeePayrollApp.Service;
 
+import com.bridgelabz.EmployeePayrollApp.Exception.EmployeeNotFoundException;
 import com.bridgelabz.EmployeePayrollApp.Model.Employee;
 import com.bridgelabz.EmployeePayrollApp.Repository.EmployeeRepository;
 import com.bridgelabz.EmployeePayrollApp.DTO.EmployeeDTO;
@@ -30,14 +31,14 @@ public class EmployeePayrollService {
         return employeeRepository.save(employee); // DB me Save Karo
     }
 
-    public Employee getEmployeeById(int id) {
+    public Employee getEmployeeById(int id) {  // ✅ Duplicate method hata diya
         return employeeRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Employee not found with id: " + id));
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee with ID " + id + " not found!"));
     }
 
     public Employee updateEmployee(int id, EmployeeDTO updatedEmployeeDTO) {
         Employee existingEmployee = employeeRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Employee not found with id: " + id));
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee with ID " + id + " not found!"));
 
         existingEmployee.setName(updatedEmployeeDTO.getName());
         existingEmployee.setSalary(updatedEmployeeDTO.getSalary());
@@ -55,7 +56,7 @@ public class EmployeePayrollService {
 
     public void deleteEmployee(int id) {
         if (!employeeRepository.existsById(id)) {
-            throw new NoSuchElementException("Employee not found with id: " + id);
+            throw new EmployeeNotFoundException("Employee with ID " + id + " not found!");
         }
         employeeRepository.deleteById(id);
 
